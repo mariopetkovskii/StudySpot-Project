@@ -2,6 +2,7 @@ package com.example.studyspotbackend.service.certservice;
 
 import com.example.studyspotbackend.helperfunctinos.HelperFunction;
 import com.example.studyspotbackend.models.course.entity.Course;
+import com.example.studyspotbackend.models.course.exceptions.CertificateCanNotBeGeneratedException;
 import com.example.studyspotbackend.models.course.exceptions.CourseNotFoundException;
 import com.example.studyspotbackend.models.course.helpers.CourseDto;
 import com.example.studyspotbackend.models.user.entity.User;
@@ -27,8 +28,8 @@ public class CertificateService {
     public void export(HttpServletResponse response, String jwtToken, CourseDto courseDto) throws IOException {
         User user = this.userRepository.findByEmail(HelperFunction.decodeJwtToGetEmail(jwtToken));
         Course course = this.courseRepository.findById(courseDto.getId()).orElseThrow(CourseNotFoundException::new);
-        if(quizResultsService.canGenerateCert(user, course)){
-            throw new RuntimeException();
+        if(!quizResultsService.canGenerateCert(user, course)){
+            throw new CertificateCanNotBeGeneratedException();
         }
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());

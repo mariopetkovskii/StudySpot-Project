@@ -5,7 +5,9 @@ import com.example.studyspotbackend.models.quiz.entity.QuizResults;
 import com.example.studyspotbackend.models.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface QuizResultsRepository extends JpaRepository<QuizResults, Long> {
     QuizResults findQuizResultsByUserId(Long userId);
-    QuizResults findQuizResultsByUserAndCourse(User user, Course course);
+    QuizResults findByUserAndCourse(User user, Course course);
 }

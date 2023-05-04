@@ -10,11 +10,14 @@ import com.example.studyspotbackend.models.quiz.entity.QuizResults;
 import com.example.studyspotbackend.models.quiz.helpers.QuestionDto;
 import com.example.studyspotbackend.models.quiz.helpers.QuizAnswerDto;
 import com.example.studyspotbackend.models.quiz.helpers.QuizResultsDto;
+import com.example.studyspotbackend.service.certservice.CertificateService;
 import com.example.studyspotbackend.service.course.interfaces.CourseService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -22,6 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CourseController {
     private final CourseService courseService;
+    private final CertificateService certificateService;
 
     @PostMapping("/add")
     private ResponseEntity<Course> addCourse(@RequestBody CourseDto courseDto){
@@ -60,5 +64,17 @@ public class CourseController {
         return this.courseService.getResult(quizAnswerDto, authorizationHeader)
                 .map(quizResults -> ResponseEntity.ok().body(quizResults))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
+    @GetMapping("/get-cert")
+    private void generateCert(HttpServletResponse response,
+                              @RequestHeader("Authorization") String authorizationHeader,
+                              @RequestBody CourseDto courseDto) throws IOException {
+        response.setContentType("application/pdf");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=certificate_" + courseDto.getName() + ".pdf";
+        response.setHeader(headerKey, headerValue);
+        this.certificateService.export(response, authorizationHeader, courseDto);
     }
 }
