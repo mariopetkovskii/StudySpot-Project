@@ -10,15 +10,21 @@ import com.example.studyspotbackend.service.quiz.interfaces.QuizResultsService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class QuizResultsServiceImpl implements QuizResultsService {
-    private QuizResultsRepository quizResultsRepository;
+    private final QuizResultsRepository quizResultsRepository;
 
     @Override
     public Optional<QuizResults> quizResults(User user, Course course, Integer points) {
+        QuizResults quizResults = this.quizResultsRepository.findByUserAndCourse(user, course);
+        if(quizResults != null){
+            quizResults.setPoints(points);
+            return Optional.of(this.quizResultsRepository.save(quizResults));
+        }
         return Optional.of(this.quizResultsRepository.save(
                 new QuizResults(
                         user,
@@ -33,7 +39,7 @@ public class QuizResultsServiceImpl implements QuizResultsService {
 
     @Override
     public Boolean canGenerateCert(User user, Course course) {
-        QuizResults quizResults = this.quizResultsRepository.findQuizResultsByUserAndCourse(user, course);
+        QuizResults quizResults = this.quizResultsRepository.findByUserAndCourse(user, course);
         return quizResults.getPoints() > 2;
     }
 }
