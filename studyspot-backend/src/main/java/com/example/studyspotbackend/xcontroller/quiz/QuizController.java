@@ -1,11 +1,11 @@
 package com.example.studyspotbackend.xcontroller.quiz;
 
-import com.example.studyspotbackend.service.quiz.interfaces.QuizService;
+import com.example.studyspotbackend.service.quiz.interfaces.QuizResultsService;
 
 public class QuizController {
-    private final QuizService quizService;
+    private final QuizResultsService quizService;
 
-    public QuizController(QuizService quizService) {
+    public QuizController(QuizResultsService quizService) {
         this.quizService = quizService;
     }
 }

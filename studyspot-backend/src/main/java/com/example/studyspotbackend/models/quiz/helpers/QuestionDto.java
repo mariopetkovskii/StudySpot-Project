@@ -9,5 +9,6 @@ public class QuestionDto {
     String answer2;
     String answer3;
     String answer4;
-    int correctAnswer;
+    Integer correctAnswer;
+    Long courseId;
 }

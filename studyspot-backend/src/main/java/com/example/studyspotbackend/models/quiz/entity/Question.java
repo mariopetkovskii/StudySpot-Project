@@ -25,9 +25,9 @@ public class Question {
     private String answer4;
 
     @Column(name = "correct_answer")
-    private int correctAnswer;
+    private Integer correctAnswer;
 
-    public Question(String questionText, String answer1, String answer2, String answer3, String answer4, int correctAnswer) {
+    public Question(String questionText, String answer1, String answer2, String answer3, String answer4, Integer correctAnswer) {
         this.questionText = questionText;
         this.answer1 = answer1;
         this.answer2 = answer2;

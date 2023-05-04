@@ -1,11 +1,13 @@
 package com.example.studyspotbackend.models.course.entity;
 
+import com.example.studyspotbackend.models.quiz.entity.Question;
 import com.example.studyspotbackend.models.quiz.entity.Quiz;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,12 +24,13 @@ public class Course {
     @OneToMany
     private List<Lesson> lessons;
 
+    @Column(name = "quiz_questions")
     @OneToMany
-    private List<Quiz> quizzes;
+    private List<Question> quizQuestionsForThisCourse;
 
-    public Course(String name, List<Lesson> lessons, List<Quiz> quizzes) {
+    public Course(String name) {
         this.name = name;
-        this.lessons = lessons;
-        this.quizzes = quizzes;
+        this.lessons = new ArrayList<>();
+        this.quizQuestionsForThisCourse = new ArrayList<>();
     }
 }

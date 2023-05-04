@@ -8,7 +8,6 @@ import java.util.List;
 
 @Getter
 public class CourseDto {
+    Long id;
     String name;
-    List<Lesson> lessons;
-    List<Quiz> quizzes;
 }

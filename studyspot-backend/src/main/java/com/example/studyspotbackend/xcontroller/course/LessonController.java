@@ -21,13 +21,6 @@ public class LessonController {
         return this.lessonService.findAll();
     }
 
-    @PostMapping("/add-lesson")
-    public ResponseEntity<Lesson> addLesson(@RequestBody LessonDto lessonDto){
-        return this.lessonService.add(lessonDto)
-                .map(lesson -> ResponseEntity.ok().body(lesson))
-                .orElseGet(() -> ResponseEntity.badRequest().build());
-    }
-
     @PutMapping("/edit-lesson")
     public ResponseEntity<Lesson> editLesson(@RequestBody LessonEditDto lessonEditDto){
         return this.lessonService.edit(lessonEditDto)

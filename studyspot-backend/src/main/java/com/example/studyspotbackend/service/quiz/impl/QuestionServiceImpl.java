@@ -25,11 +25,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Optional<Question> add(QuestionDto questionDto) {
-        return Optional.of(this.questionRepository.save(new Question(
+    public Question add(QuestionDto questionDto) {
+        return this.questionRepository.save(new Question(
                 questionDto.getQuestionText(), questionDto.getAnswer1(),
                 questionDto.getAnswer2(), questionDto.getAnswer3(),
-                questionDto.getAnswer4(), questionDto.getCorrectAnswer())));
+                questionDto.getAnswer4(), questionDto.getCorrectAnswer()));
     }
 
     @Override
@@ -46,8 +46,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Optional<Question> findById(Long id) {
-        return Optional.of(this.questionRepository.findById(id).orElseThrow(QuestionNotFoundException::new));
+    public Question findById(Long id) {
+        return this.questionRepository.findById(id).orElseThrow(QuestionNotFoundException::new);
     }
 
     @Override

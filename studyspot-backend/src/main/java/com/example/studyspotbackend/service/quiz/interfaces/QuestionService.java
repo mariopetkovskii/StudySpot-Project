@@ -11,11 +11,11 @@ import java.util.Optional;
 public interface QuestionService {
     List<Question> findAll();
 
-    Optional<Question> add(QuestionDto addQuestionDto);
+    Question add(QuestionDto addQuestionDto);
 
     Optional<Question> edit(QuestionEditDto questionEditDto);
 
-    Optional<Question> findById(Long id);
+    Question findById(Long id);
 
     void deleteById(QuestionEditDto questionEditDto);
 }

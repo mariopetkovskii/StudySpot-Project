@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface LessonService {
     List<Lesson> findAll();
 
-    Optional<Lesson> add(LessonDto lessonDto);
+    Lesson add(LessonDto lessonDto);
 
     Optional<Lesson> edit(LessonEditDto lessonEditDto);
 
