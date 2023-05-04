@@ -1,9 +1,9 @@
 package com.example.studyspotbackend.repository.course;
 
-import com.example.studyspotbackend.models.course.entity.Lesson;
+import com.example.studyspotbackend.models.course.entity.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LessonRepository extends JpaRepository<Lesson, Long> {
+public interface CourseRepository extends JpaRepository<Course, Long> {
 }

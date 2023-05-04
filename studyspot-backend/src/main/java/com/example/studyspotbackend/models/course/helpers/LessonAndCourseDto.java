@@ -1,12 +1,11 @@
 package com.example.studyspotbackend.models.course.helpers;
 
-import lombok.Data;
 import lombok.Getter;
 
-@Data
-public class LessonDto {
+@Getter
+public class LessonAndCourseDto {
     String name;
     String desc;
     String url;
-    Long id;
+    Long courseId;
 }

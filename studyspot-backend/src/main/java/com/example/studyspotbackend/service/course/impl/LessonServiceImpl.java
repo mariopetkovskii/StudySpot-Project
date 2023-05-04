@@ -23,8 +23,8 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public Optional<Lesson> add(LessonDto lessonDto) {
-        return Optional.of(this.lessonRepository.save(new Lesson(lessonDto.getName(), lessonDto.getDesc(), lessonDto.getUrl())));
+    public Lesson add(LessonDto lessonDto) {
+        return this.lessonRepository.save(new Lesson(lessonDto.getName(), lessonDto.getDesc(), lessonDto.getUrl()));
     }
 
     @Override
