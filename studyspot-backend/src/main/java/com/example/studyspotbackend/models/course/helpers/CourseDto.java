@@ -10,4 +10,8 @@ import java.util.List;
 public class CourseDto {
     Long id;
     String name;
+    String imageUrl;
+    String desc;
+    String name_mk;
+    String desc_mk;
 }

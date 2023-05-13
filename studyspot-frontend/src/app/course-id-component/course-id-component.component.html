@@ -1,0 +1,33 @@
+<div class="container">
+  <p class="h1 pt-5">{{ course.name }}</p>
+  <a class="btn btn-secondary" (click)="addLecture()" *ngIf="isAdminAuthority()">{{ 'lectures.add' | translate }}</a>
+  <a class="btn btn-secondary" (click)="addQuestionQuiz()" *ngIf="isAdminAuthority()">{{ 'quiz.add' | translate }}</a>
+  <a class="btn btn-secondary" (click)="startQuiz()" *ngIf="isAdminAuthority()">{{ 'quiz.start' | translate }}</a>
+  <div class="row pt-2">
+    <div class="col-md-5">
+      <img style="max-width: 100%" [src]="course.imageUrl" alt="">
+    </div>
+    <div class="col-md-7">
+      <div class="box">
+        <p class="h3" *ngIf="selectedLanguage === 'en'">
+          {{course.name}}
+        </p>
+        <p class="h3" *ngIf="selectedLanguage === 'mk'">
+          {{course.name_mk}}
+        </p>
+        <p class="h5" *ngIf="selectedLanguage === 'en'">
+          {{course.description}}
+        </p>
+        <p class="h5" *ngIf="selectedLanguage === 'mk'">
+          {{course.description_mk}}
+        </p>
+        <p class="h6">{{ 'courses.lectures' | translate }}</p>
+        <div class="list-group" *ngFor="let lecture of course.lessons">
+          <a class="list-group-item list-group-item-action hover-mouse" (click)="openLecture(lecture.id)">{{ lecture.name }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

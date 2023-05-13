@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 pt-5">
+      <div class="d-flex justify-content-center">
+        <img src="https://pic.onlinewebfonts.com/svg/img_184513.png" style="width: 200px">
+      </div>
+      <div class="pt-5" style="font-weight: bold">
+        <div class="pt-2">
+          {{ 'profile.name' | translate }}: {{ user.firstName }}
+        </div>
+        <div class="pt-2">
+          {{ 'profile.surname' | translate }}: {{ user.lastName }}
+        </div>
+        <div class="pt-2">
+          {{ 'profile.email' | translate }}: {{ user.email }}
+        </div>
+        <div class="pt-2">
+          {{ 'profile.quizzes' | translate }}:
+          <hr/>
+          <div *ngFor="let quiz of userResults">
+            {{ 'courses.course_name' | translate }}: {{ quiz.course }} - {{ 'quiz.points' | translate}}: {{ quiz.points }}
+            <ng-container *ngIf="quiz.points > 2">
+              <button class="btn btn-secondary" (click)="getCert(quiz.id)">{{ 'quiz.get_cert' | translate }}</button>
+            </ng-container>
+            <hr/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

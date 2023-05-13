@@ -1,0 +1,26 @@
+<div class="container">
+  <form>
+    <div *ngFor="let question of questions; let i = index" >
+      <h6>Question {{ i + 1 }}: {{ question.questionText }}</h6>
+      <label>
+        <input type="radio" name="answer{{ question.id }}" [(ngModel)]="question.answer"
+               value="1"> {{ question.answer1 }}
+      </label>
+      <label>
+        <input type="radio" name="answer{{ question.id }}" [(ngModel)]="question.answer"
+               value="2"> {{ question.answer2 }}
+      </label>
+      <label>
+        <input type="radio" name="answer{{ question.id }}" [(ngModel)]="question.answer"
+               value="3"> {{ question.answer3 }}
+      </label>
+      <label>
+        <input type="radio" name="answer{{ question.id }}" [(ngModel)]="question.answer"
+               value="4"> {{ question.answer4 }}
+      </label>
+      <hr/>
+    </div>
+    <button (click)="onSubmit()" class="btn btn-secondary">Submit</button>
+  </form>
+
+</div>

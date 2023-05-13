@@ -21,5 +21,6 @@ public interface UserService {
 
     Optional<User> details(String email);
 
+    User enableAccount(User user);
 
 }

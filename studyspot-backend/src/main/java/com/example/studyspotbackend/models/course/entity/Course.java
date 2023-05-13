@@ -20,6 +20,10 @@ public class Course {
     private Long id;
 
     private String name;
+    private String name_mk;
+    private String imageUrl;
+    private String description;
+    private String description_mk;
 
     @OneToMany
     private List<Lesson> lessons;
@@ -28,8 +32,12 @@ public class Course {
     @OneToMany
     private List<Question> quizQuestionsForThisCourse;
 
-    public Course(String name) {
+    public Course(String name, String imageUrl, String description, String name_mk, String description_mk) {
+        this.imageUrl = imageUrl;
+        this.description = description;
         this.name = name;
+        this.name_mk = name_mk;
+        this.description_mk = description_mk;
         this.lessons = new ArrayList<>();
         this.quizQuestionsForThisCourse = new ArrayList<>();
     }

@@ -1,5 +1,6 @@
 package com.example.studyspotbackend.service.quiz.interfaces;
 
+import com.example.studyspotbackend.QuizResultsHelperWithCourse;
 import com.example.studyspotbackend.models.course.entity.Course;
 import com.example.studyspotbackend.models.quiz.entity.Quiz;
 import com.example.studyspotbackend.models.quiz.entity.QuizResults;
@@ -14,6 +15,6 @@ import java.util.Optional;
 public interface QuizResultsService {
     Optional<QuizResults> quizResults(User user, Course course, Integer points);
 
-    Optional<QuizResults> getUserCoursePoints(QuizResultsDto quizResultsDto);
+    List<QuizResultsHelperWithCourse> getUserCoursePoints(User user);
     Boolean canGenerateCert(User user, Course course);
 }

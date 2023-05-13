@@ -1,6 +1,7 @@
 package com.example.studyspotbackend.service.quiz.impl;
 
 
+import com.example.studyspotbackend.QuizResultsHelperWithCourse;
 import com.example.studyspotbackend.models.course.entity.Course;
 import com.example.studyspotbackend.models.quiz.entity.QuizResults;
 import com.example.studyspotbackend.models.quiz.helpers.QuizResultsDto;
@@ -10,6 +11,7 @@ import com.example.studyspotbackend.service.quiz.interfaces.QuizResultsService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +35,18 @@ public class QuizResultsServiceImpl implements QuizResultsService {
     }
 
     @Override
-    public Optional<QuizResults> getUserCoursePoints(QuizResultsDto quizResultsDto) {
-        return Optional.of(this.quizResultsRepository.findQuizResultsByUserId(quizResultsDto.getUserId()));
+    public List<QuizResultsHelperWithCourse> getUserCoursePoints(User user) {
+        List<QuizResults> quizResults = this.quizResultsRepository.findQuizResultsByUser(user);
+
+        List<QuizResultsHelperWithCourse> quizResultsHelperWithCourses = new ArrayList<>();
+        quizResults.forEach(quizResults1 -> {
+            QuizResultsHelperWithCourse quizResultsHelperWithCourse = new QuizResultsHelperWithCourse();
+            quizResultsHelperWithCourse.setCourse(quizResults1.getCourse().getName());
+            quizResultsHelperWithCourse.setPoints(quizResults1.getPoints().toString());
+            quizResultsHelperWithCourse.setId(quizResults1.getCourse().getId());
+            quizResultsHelperWithCourses.add(quizResultsHelperWithCourse);
+        });
+        return quizResultsHelperWithCourses;
     }
 
     @Override

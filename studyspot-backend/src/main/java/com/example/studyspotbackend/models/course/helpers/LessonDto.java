@@ -9,4 +9,6 @@ public class LessonDto {
     String desc;
     String url;
     Long id;
+    String name_mk;
+    String desc_mk;
 }

@@ -1,0 +1,27 @@
+<div class="container">
+  <form [formGroup]="addCourseForm">
+    <div class="row">
+      <div class="col-md-5 pt-5">
+        <div class="d-flex justify-content-center">
+          <img src="https://www.pngarts.com/files/7/School-Education-Course-PNG-Photo.png" style="width: 200px">
+        </div>
+        <p class="h6 pt-3">{{ 'courses.add' | translate }}</p>
+        <input type="text" class="form-control mt-3 p-2"
+               name="courseName" formControlName="courseName" placeholder="{{ 'courses.course_name' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="description" formControlName="description" placeholder="{{ 'courses.description' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="courseNameMk" formControlName="courseNameMk" placeholder="{{ 'courses.course_name_mk' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="descriptionMK" formControlName="descriptionMK" placeholder="{{ 'courses.description_mk' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="imageUrl" formControlName="imageUrl" placeholder="{{ 'courses.image_url' | translate }}"/>
+        <button class="btn mt-3 w-100 p-2"
+                style="background-color: rgba(54,65,81, 0.85); color: white;"
+                (click)="onSubmit()">{{ 'courses.add' | translate }}</button>
+        <p class="h6 mt-3">{{ errorAddingCourse }}</p>
+
+      </div>
+    </div>
+  </form>
+</div>

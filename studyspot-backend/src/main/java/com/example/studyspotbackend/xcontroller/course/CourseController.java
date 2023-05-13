@@ -3,13 +3,10 @@ package com.example.studyspotbackend.xcontroller.course;
 import com.example.studyspotbackend.models.course.entity.Course;
 import com.example.studyspotbackend.models.course.helpers.CourseDto;
 import com.example.studyspotbackend.models.course.helpers.LessonAndCourseDto;
-import com.example.studyspotbackend.models.course.helpers.LessonDto;
-import com.example.studyspotbackend.models.quiz.entity.Quiz;
 import com.example.studyspotbackend.models.quiz.entity.QuizQuestions;
 import com.example.studyspotbackend.models.quiz.entity.QuizResults;
 import com.example.studyspotbackend.models.quiz.helpers.QuestionDto;
 import com.example.studyspotbackend.models.quiz.helpers.QuizAnswerDto;
-import com.example.studyspotbackend.models.quiz.helpers.QuizResultsDto;
 import com.example.studyspotbackend.service.certservice.CertificateService;
 import com.example.studyspotbackend.service.course.interfaces.CourseService;
 import lombok.AllArgsConstructor;
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/rest/course")
@@ -32,6 +30,16 @@ public class CourseController {
         return this.courseService.add(courseDto)
                 .map(course -> ResponseEntity.ok().body(course))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
+    @GetMapping("/get-courses")
+    private List<Course> getCourses(){
+        return this.courseService.findAll();
+    }
+
+    @GetMapping("/get-course/{id}")
+    private Optional<Course> getCourse(@PathVariable Long id){
+        return this.courseService.findById(id);
     }
 
     @DeleteMapping("/delete")
@@ -53,7 +61,7 @@ public class CourseController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @GetMapping("/get-quiz")
+    @PostMapping("/get-quiz")
     private List<QuizQuestions> getQuizQuestions(@RequestBody CourseDto courseDto){
         return this.courseService.getCourseQuizQuestions(courseDto);
     }
@@ -66,7 +74,7 @@ public class CourseController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @GetMapping("/get-cert")
+    @PostMapping("/get-cert")
     private void generateCert(HttpServletResponse response,
                               @RequestHeader("Authorization") String authorizationHeader,
                               @RequestBody CourseDto courseDto) throws IOException {

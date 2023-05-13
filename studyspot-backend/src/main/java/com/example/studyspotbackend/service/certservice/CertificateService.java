@@ -48,8 +48,7 @@ public class CertificateService {
         Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
         fontParagraph.setSize(12);
 
-
-        String pointsInCert = "You have passed your exam";
+        String pointsInCert = "You have passed your exam for " + course.getName();
 
         Paragraph paragraph2 = new Paragraph(pointsInCert, fontParagraph);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);

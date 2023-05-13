@@ -1,0 +1,27 @@
+<div class="container">
+  <form [formGroup]="addRegisterGroup">
+    <div class="row">
+      <div class="col-md-5 pt-5">
+        <div class="d-flex justify-content-center">
+          <img src="https://pic.onlinewebfonts.com/svg/img_184513.png" style="width: 200px">
+        </div>
+        <p class="h6 pt-3">{{ 'auth.details' | translate }}</p>
+        <input type="text" id="firstName" class="form-control mt-3 p-2"
+               name="firstName" formControlName="firstName" placeholder="{{ 'auth.first_name' | translate }}"/>
+        <input type="text" id="secondName" class="form-control mt-3 p-2"
+               name="secondName" formControlName="lastName" placeholder="{{ 'auth.second_name' | translate }}"/>
+        <input type="email" id="email" class="form-control mt-3 p-2"
+               name="email" formControlName="email" placeholder="{{ 'auth.email' | translate }}"/>
+        <input type="password" id="password" class="form-control mt-3 p-2"
+               name="password" formControlName="password" placeholder="{{ 'auth.password' | translate }}"/>
+        <input type="password" id="confirmPassword" class="form-control mt-3 p-2"
+               name="confirmPassword" formControlName="confirmPassword" placeholder="{{ 'auth.confirm_password' | translate }}"/>
+
+        <button class="btn mt-3 w-100 p-2"
+                style="background-color: rgba(54,65,81, 0.85); color: white;"
+                (click)="onRegisterSubmit()">{{ 'auth.register' | translate }}</button>
+        <p class="h6 mt-3">{{ errorRegistration }}</p>
+      </div>
+    </div>
+  </form>
+</div>

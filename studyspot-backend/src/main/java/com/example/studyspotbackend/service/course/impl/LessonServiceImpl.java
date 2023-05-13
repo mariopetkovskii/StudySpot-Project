@@ -24,7 +24,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public Lesson add(LessonDto lessonDto) {
-        return this.lessonRepository.save(new Lesson(lessonDto.getName(), lessonDto.getDesc(), lessonDto.getUrl()));
+        return this.lessonRepository.save(new Lesson(lessonDto.getName(), lessonDto.getDesc(), lessonDto.getUrl(), lessonDto.getName_mk(), lessonDto.getDesc_mk()));
     }
 
     @Override

@@ -38,7 +38,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers(
-                        LOGIN_URL, "/rest/user/**", "/rest/lesson/**"
+                        LOGIN_URL, "/rest/user/**", "/rest/lesson/**", "/rest/course/get-courses", "/rest/course/get-course/**"
                 )
                 .permitAll()
                 .anyRequest().authenticated()

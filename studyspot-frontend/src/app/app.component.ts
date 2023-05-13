@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import { marker as TRANSLATE_ME } from "@biesbjerg/ngx-translate-extract-marker";
+import {Location} from "@angular/common";
+import {ApiService} from "./api-service";
 
 
 @Component({
@@ -9,26 +11,47 @@ import { marker as TRANSLATE_ME } from "@biesbjerg/ngx-translate-extract-marker"
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  ngOnInit(): void {
-    const val = TRANSLATE_ME('home.title');
-    console.log(' Title from marker ==> ', TRANSLATE_ME('home.title'));
-  }
+  isUserLoggedIn: boolean = false;
 
   supportLanguages = ['en', 'mk'];
 
-  constructor(private translateService: TranslateService){
+  selectedLanguage: string = localStorage.getItem('selectedLanguage_SS') || this.supportLanguages[0];
+
+  constructor(private translateService: TranslateService,
+              private location: Location,
+              private apiService: ApiService){
     this.translateService.addLangs(this.supportLanguages);
     this.translateService.setDefaultLang('en');
-
-    const browserLang = this.translateService.getBrowserLang();
-
-    if (this.supportLanguages.includes(<string>browserLang)) {
-      this.translateService.use(<string>browserLang);
+    const storedLang = localStorage.getItem('selectedLanguage_SS');
+    if (storedLang && this.supportLanguages.includes(storedLang)) {
+      this.translateService.use(storedLang);
+    } else {
+      const browserLang = this.translateService.getBrowserLang();
+      if (this.supportLanguages.includes(<string>browserLang)) {
+        this.translateService.use(<string>browserLang);
+      }
     }
   }
 
-  useLang(lang: string) {
-    console.log('selected language ==> ', lang);
-    this.translateService.use(lang);
+  ngOnInit(): void {
+    this.isLoggedIn();
   }
+
+  isLoggedIn(){
+    this.isUserLoggedIn = !!localStorage.getItem("AUTH_TOKEN_SS");
+  }
+
+  logOut(){
+    localStorage.removeItem("AUTH_TOKEN_SS")
+  }
+
+  useLang(lang: string) {
+    this.translateService.use(lang);
+    localStorage.setItem('selectedLanguage_SS', lang);
+  }
+
+  getUserNameAndSurname(){
+    return this.apiService.getUserNameAndSurname();
+  }
+
 }

@@ -2,5 +2,73 @@
   "home": {
     "subheader": "",
     "title": "Welcome to my multi lingual application"
+  },
+  "auth": {
+    "details": "Please enter your login details to sign in.",
+    "email": "Email Address",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "login": "Log in",
+    "register_message": "Don't have an account?",
+    "register": "Register",
+    "sign_up": "Sign up!",
+    "first_name": "First Name",
+    "second_name": "Last Name",
+    "fail_registration": "Registration failed! Try again!",
+    "fail_login": "Login failed! Try again!",
+    "logout": "Log out"
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "courses": "Courses",
+    "contact": "Contact",
+    "sign_up": "Sign up",
+    "sign_in": "Sign in"
+  },
+  "courses": {
+    "all_courses": "All Courses",
+    "more_information": "More information",
+    "add": "Add course",
+    "course_name": "Course name",
+    "image_url": "Image",
+    "description": "Description",
+    "course_name_mk": "Име на курс",
+    "description_mk": "Опис",
+    "unsuccessful_add": "Unsuccessfully",
+    "lectures": "Lectures"
+  },
+  "lectures": {
+    "add": "Add lecture",
+    "name": "Lesson",
+    "name_mk": "Лекција",
+    "description": "Description",
+    "description_mk": "Опис",
+    "url": "URL",
+    "unsuccessful_add": "Unsuccessfully"
+  },
+  "system": {
+    "home_page": "Welcome to StudySpot, a place where you can expand your knowledge on various topics at your own pace. We offer lots of courses, which include tests, laboratory exercises and all the materials you will need to pass the courses and more importantly learn from them.\n\nTo see all of our courses head over to the \"Courses\" section to browse currently available courses.\n\nIf you want to learn more about us, make sure you check the \"About\" section.",
+    "about_page": "Study Spot is an application designed for online learning, which allows users to acquire new skills in an efficient and effective way by choosing different courses such as: web design, cyber security, artificial intelligence, graphic design, marketing and others. Each user studies a course according to their desire with his own dynamics and schedule of the courses, including functionalities in the form of listening to classes, quiz participation, interaction between members who have the same courses, availability of materials in the form of PDF documents, PowerPoint presentations, video content and images, and many others."
+  },
+  "quiz": {
+    "add": "Add quiz",
+    "questionText": "Question",
+    "answer1": "Answer 1",
+    "answer2": "Answer 2",
+    "answer3": "Answer 3",
+    "answer4": "Answer 4",
+    "correctAnswer": "Correct answer",
+    "unsuccessful_add": "Unsuccessfully",
+    "start": "Start quiz",
+    "finish": "Finish",
+    "points": "Points",
+    "get_cert": "Certificate"
+  },
+  "profile": {
+    "name": "Name",
+    "surname": "Surname",
+    "email": "Email",
+    "quizzes": "Quizzes"
   }
 }

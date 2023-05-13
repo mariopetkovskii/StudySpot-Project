@@ -44,7 +44,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Optional<Course> add(CourseDto courseDto) {
-        return Optional.of(this.courseRepository.save(new Course(courseDto.getName())));
+        return Optional.of(this.courseRepository.save(new Course(courseDto.getName(), courseDto.getImageUrl(), courseDto.getDesc(), courseDto.getName_mk(), courseDto.getDesc_mk())));
     }
 
     @Override

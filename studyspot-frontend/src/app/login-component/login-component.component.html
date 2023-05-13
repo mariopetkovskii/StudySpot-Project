@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 pt-5">
+      <div class="d-flex justify-content-center">
+        <img src="https://pic.onlinewebfonts.com/svg/img_184513.png" style="width: 200px">
+      </div>
+      <p class="h6 pt-3">{{ 'auth.details' | translate }}</p>
+      <input type="email" id="email" class="form-control p-2"
+             name="email" [(ngModel)]="email" placeholder="{{ 'auth.email' | translate }}"/>
+      <input type="password" id="password" class="form-control mt-3 p-2"
+             name="password" [(ngModel)]="password" placeholder="{{ 'auth.password' | translate }}"/>
+
+      <button class="btn mt-5 w-100 p-2" style="background-color: rgba(54,65,81, 0.85); color: white;"
+              (click)="handleSubmit()">{{ 'auth.login' | translate }}</button>
+      <p class="h6 m-1">{{ 'auth.register_message' | translate }} {{ 'auth.sign_up' | translate }}</p>
+
+
+      <p class="h6 mt-2">{{ errorMessage }}</p>
+      <p class="h6 mt-2">{{ queryMessage }}</p>
+    </div>
+  </div>
+</div>

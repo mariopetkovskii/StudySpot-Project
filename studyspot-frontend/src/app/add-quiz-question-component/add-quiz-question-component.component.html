@@ -1,0 +1,29 @@
+<div class="container">
+  <form [formGroup]="addQuizQuestionFOrm">
+    <div class="row">
+      <div class="col-md-5 pt-5">
+        <div class="d-flex justify-content-center">
+          <img src="https://www.pngarts.com/files/7/School-Education-Course-PNG-Photo.png" style="width: 200px">
+        </div>
+        <p class="h6 pt-3">{{ 'quiz.add' | translate }}</p>
+        <input type="text" class="form-control mt-3 p-2"
+               name="questionText" formControlName="questionText" placeholder="{{ 'quiz.questionText' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="answer1" formControlName="answer1" placeholder="{{ 'quiz.answer1' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="answer2" formControlName="answer2" placeholder="{{ 'quiz.answer2' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="answer3" formControlName="answer3" placeholder="{{ 'quiz.answer3' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="answer4" formControlName="answer4" placeholder="{{ 'quiz.answer4' | translate }}"/>
+        <input type="text" class="form-control mt-3 p-2"
+               name="correctAnswer" formControlName="correctAnswer" placeholder="{{ 'quiz.correctAnswer' | translate }}"/>
+        <button class="btn mt-3 w-100 p-2"
+                style="background-color: rgba(54,65,81, 0.85); color: white;"
+                (click)="onSubmit()">{{ 'quiz.add' | translate }}</button>
+        <p class="h6 mt-3">{{ errorAdding }}</p>
+
+      </div>
+    </div>
+  </form>
+</div>

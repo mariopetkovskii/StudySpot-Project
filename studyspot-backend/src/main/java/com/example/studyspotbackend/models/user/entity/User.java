@@ -42,7 +42,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.isEnabled = true;
+        this.isEnabled = false;
         this.dateCreated = OffsetDateTime.now();
         this.dateModified = OffsetDateTime.now();
         this.role = Role.ROLE_USER;

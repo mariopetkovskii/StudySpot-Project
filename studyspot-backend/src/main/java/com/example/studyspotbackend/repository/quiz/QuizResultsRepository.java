@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface QuizResultsRepository extends JpaRepository<QuizResults, Long> {
-    QuizResults findQuizResultsByUserId(Long userId);
+    List<QuizResults> findQuizResultsByUser(User user);
     QuizResults findByUserAndCourse(User user, Course course);
 }

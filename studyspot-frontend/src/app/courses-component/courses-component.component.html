@@ -1,0 +1,22 @@
+<div class="container">
+  <p class="h1 pt-5">{{ 'courses.all_courses' | translate }}</p>
+  <a class="btn btn-secondary" href="/courses/add" *ngIf="isAdminAuthority()">{{ 'courses.add' | translate }}</a>
+  <div class="pt-5">
+    <div class="row">
+      <div class="col-md-3 mb-4" *ngFor="let course of allCourses">
+        <div class="card pt" style="width: 18rem;">
+          <img class="card-img-top" [src]="course.imageUrl" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" *ngIf="selectedLanguage === 'en'">{{ course.name }}</h5>
+            <h5 class="card-title" *ngIf="selectedLanguage === 'mk'">{{ course.name_mk }}</h5>
+            <p class="card-text" *ngIf="selectedLanguage === 'en'">{{ course.description }}</p>
+            <p class="card-text" *ngIf="selectedLanguage === 'mk'">{{ course.description_mk }}</p>
+            <button class="btn btn-secondary w-100" (click)="openCourse(course.id)" *ngIf="isUserLoggedIn()">{{ 'courses.more_information' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

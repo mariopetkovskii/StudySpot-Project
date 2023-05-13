@@ -1,17 +1,22 @@
 package com.example.studyspotbackend.service.user.impl;
 
+import com.example.studyspotbackend.helperfunctinos.HelperFunction;
+import com.example.studyspotbackend.models.user.entity.Token;
 import com.example.studyspotbackend.models.user.entity.User;
 import com.example.studyspotbackend.models.user.exceptions.PasswordDoNotMatchException;
 import com.example.studyspotbackend.models.user.exceptions.UserAlreadyExistsException;
 import com.example.studyspotbackend.models.user.helpers.UserRegisterDto;
+import com.example.studyspotbackend.service.user.interfaces.TokenService;
 import com.example.studyspotbackend.service.user.interfaces.UserService;
 import com.example.studyspotbackend.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +24,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final TokenService tokenService;
 
     @Override
     public User findByEmail(String email) {
@@ -60,12 +67,27 @@ public class UserServiceImpl implements UserService {
                 userRegisterDto.getLastName(),
                 userRegisterDto.getEmail(),
                 passwordEncoder.encode(userRegisterDto.getPassword()));
+
+        Token token = new Token();
+        String tokenValue = UUID.randomUUID().toString();
+        token.setToken(tokenValue);
+        token.setExpirationDate(OffsetDateTime.now().plusMinutes(300));
+        token.setUser(newUser);
+        tokenService.create(token);
+
         this.userRepository.save(newUser);
+        HelperFunction.sendRegistrationEmail(userRegisterDto.getEmail(), tokenValue);
         return Optional.of(newUser);
     }
 
     @Override
     public Optional<User> details(String email) {
         return Optional.of(this.userRepository.findByEmail(email));
+    }
+
+    @Override
+    public User enableAccount(User user) {
+        user.setIsEnabled(true);
+        return this.userRepository.save(user);
     }
 }

@@ -1,0 +1,24 @@
+version: "3"
+services:
+  studyspot-service:
+    image: "postgres"
+    container_name: "studyspot-db"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=studyspot
+    ports:
+      - "5432:5432"
+  pgadmin-service:
+    image: "dpage/pgadmin4"
+    container_name: "studyspot-pgadmin"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=studyspot@studyspot.com
+      - PGADMIN_DEFAULT_PASSWORD=studyspot
+    ports:
+      - "82:80"
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
+      - 1025:1025

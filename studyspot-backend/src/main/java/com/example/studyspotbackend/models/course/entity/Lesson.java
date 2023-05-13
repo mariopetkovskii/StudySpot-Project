@@ -15,14 +15,17 @@ public class Lesson {
     private Long id;
 
     private String name;
-
+    private String name_mk;
     private String description;
+    private String description_mk;
 
     private String url;
-    public Lesson(String name, String description, String url) {
+    public Lesson(String name, String description, String url, String name_mk, String description_mk) {
         this.name = name;
         this.description = description;
         this.url = url;
+        this.name_mk = name_mk;
+        this.description_mk = description_mk;
     }
 
     public Lesson() {
