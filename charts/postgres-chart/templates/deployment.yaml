@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.postgresdb.deploymentName }}
+  labels:
+    app: {{ .Values.postgresdb.postgres.app }}
+    tier: {{ .Values.postgresdb.postgres.tier }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.postgresdb.postgres.app }}
+      tier: {{ .Values.postgresdb.postgres.tier }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.postgresdb.postgres.app }}
+        tier: {{ .Values.postgresdb.postgres.tier }}
+    spec:
+      containers:
+        - name: {{ .Values.postgresdb.name }}
+          image: {{ .Values.postgresdb.image }}:{{ .Values.postgresdb.tag }}
+          ports:
+            - containerPort: {{ .Values.postgresdb.port }}
+          env:
+            - name: POSTGRES_DB
+              value: studyspot
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+      restartPolicy: {{ .Values.postgresdb.restartPolicy }}

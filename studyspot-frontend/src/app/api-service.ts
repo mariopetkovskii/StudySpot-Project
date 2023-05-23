@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { first, map } from 'rxjs';
 import { saveAs } from 'file-saver';
+import {environment} from "../environments/environment.prod";
 
 
 @Injectable({
@@ -11,6 +12,7 @@ export class ApiService {
 
   endpointUrl: string = 'http://localhost:8080/rest';
 
+  // endpointUrl: string = environment.apiUrl
   constructor(private httpClient: HttpClient) {}
 
   private getAuthHeaders(): HttpHeaders {

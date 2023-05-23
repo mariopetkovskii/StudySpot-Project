@@ -1,0 +1,11 @@
+backend:
+  name: studyspotbackend
+  serviceName: studyspotservice
+  deploymentName: studyspotdeployment
+  image: mariopetkovski/studyspot
+  tag: latest
+  restartPolicy: Always
+  port: 8080
+  service:
+    name: studyspotservice
+    port: 8080

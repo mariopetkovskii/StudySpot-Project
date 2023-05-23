@@ -1,0 +1,13 @@
+postgresdb:
+  name: postgres-db
+  serviceName: postgres-studyspot-service
+  deploymentName: postgres-deployment
+  postgres:
+    app: postgres
+    tier: postgresdb
+  image: postgres
+  tag: latest
+  restartPolicy: Always
+  port: 5432
+  service:
+    name: postgres-studyspot-service

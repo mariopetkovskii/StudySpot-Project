@@ -81,18 +81,18 @@ public class UserController {
         if (tokenInDB != null) {
             if (tokenInDB.getExpirationDate().isBefore(OffsetDateTime.now())) {
                 this.userService.deleteUserByEmail(tokenInDB.getUser().getEmail());
-                response.sendRedirect("http://localhost:4200/login?message=tokenexpired");
+                response.sendRedirect("http://localhost/login?message=tokenexpired");
             } else {
                 User user = tokenInDB.getUser();
                 if (user.getIsEnabled()) {
-                    response.sendRedirect("http://localhost:4200/login?message=exists");
+                    response.sendRedirect("http://localhost/login?message=exists");
                 } else {
                     this.userService.enableAccount(user);
-                    response.sendRedirect("http://localhost:4200/login?message=success");
+                    response.sendRedirect("http://localhost/login?message=success");
                 }
             }
         } else {
-            response.sendRedirect("http://localhost:4200/login?message=invalidtoken");
+            response.sendRedirect("http://localhost/login?message=invalidtoken");
         }
     }
 

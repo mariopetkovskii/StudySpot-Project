@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.postgresdb.serviceName }}
+spec:
+  selector:
+    app: {{ .Values.postgresdb.postgres.app }}
+    tier: {{ .Values.postgresdb.postgres.tier }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.postgresdb.port }}
+      targetPort: {{ .Values.postgresdb.port }}

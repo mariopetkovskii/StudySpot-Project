@@ -1,0 +1,11 @@
+frontend:
+  name: studyspotfrontend
+  serviceName: studyspot-frontend-service
+  deploymentName: studyspotfrontenddeployment
+  image: mariopetkovski/studyspotfront
+  tag: latest
+  restartPolicy: Always
+  port: 80
+  service:
+    name: studyspot-frontend-service
+    port: 80

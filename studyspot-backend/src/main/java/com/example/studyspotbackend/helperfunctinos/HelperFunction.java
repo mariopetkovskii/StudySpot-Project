@@ -22,7 +22,7 @@ import java.util.Properties;
 import static com.example.studyspotbackend.security.SecurityConstants.SECRET;
 
 public class HelperFunction {
-    private final static String host = "localhost";
+    private final static String host = "mailhog";
     private final static int port = 1025;
     private final static String sender = "sender@example.com";
 
