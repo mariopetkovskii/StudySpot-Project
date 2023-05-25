@@ -2,10 +2,7 @@ package com.example.studyspotbackend.models.course.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,7 +13,9 @@ public class Lesson {
 
     private String name;
     private String name_mk;
+    @Column(length = 2000)
     private String description;
+    @Column(length = 2000)
     private String description_mk;
 
     private String url;
