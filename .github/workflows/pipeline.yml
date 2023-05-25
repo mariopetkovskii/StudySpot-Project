@@ -25,17 +25,17 @@ jobs:
           run: |
             docker push mariopetkovski/studyspot
             
-        - name: Build frontend image
-          run: |
-            docker build -t mariopetkovski/studyspotfront ./studyspot-frontend
+#         - name: Build frontend image
+#           run: |
+#             docker build -t mariopetkovski/studyspotfront ./studyspot-frontend
             
-        - name: Docker frontend tag
-          run: |
-            docker tag mariopetkovski/studyspotfront mariopetkovski/studyspotfront
+#         - name: Docker frontend tag
+#           run: |
+#             docker tag mariopetkovski/studyspotfront mariopetkovski/studyspotfront
         
-        - name: Docker push frontend image
-          run: |
-            docker push mariopetkovski/studyspotfront
+#         - name: Docker push frontend image
+#           run: |
+#             docker push mariopetkovski/studyspotfront
              
     deploy:
         needs: build
@@ -47,5 +47,7 @@ jobs:
             
             - name: Run scripts
               run: |
-                ls
-                pwd
+                 git pull
+                 cd scripts
+                 ./helm-run.sh
+            
