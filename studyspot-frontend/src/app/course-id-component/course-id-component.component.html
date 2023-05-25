@@ -2,7 +2,7 @@
   <p class="h1 pt-5">{{ course.name }}</p>
   <a class="btn btn-secondary" (click)="addLecture()" *ngIf="isAdminAuthority()">{{ 'lectures.add' | translate }}</a>
   <a class="btn btn-secondary" (click)="addQuestionQuiz()" *ngIf="isAdminAuthority()">{{ 'quiz.add' | translate }}</a>
-  <a class="btn btn-secondary" (click)="startQuiz()" *ngIf="isAdminAuthority()">{{ 'quiz.start' | translate }}</a>
+  <a class="btn btn-secondary" (click)="startQuiz()">{{ 'quiz.start' | translate }}</a>
   <div class="row pt-2">
     <div class="col-md-5">
       <img style="max-width: 100%" [src]="course.imageUrl" alt="">
