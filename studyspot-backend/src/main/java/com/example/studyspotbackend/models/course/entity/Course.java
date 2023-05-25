@@ -22,9 +22,9 @@ public class Course {
     private String name;
     private String name_mk;
     private String imageUrl;
-    @Lob
+    @Column(length = 2000)
     private String description;
-    @Lob
+    @Column(length = 2000)
     private String description_mk;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

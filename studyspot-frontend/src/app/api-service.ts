@@ -10,7 +10,7 @@ import {environment} from "../environments/environment.prod";
 })
 export class ApiService {
 
-  endpointUrl: string = 'http://51.142.161.156:8080/rest';
+  endpointUrl: string = 'http://localhost:8080/rest';
 
   // endpointUrl: string = environment.apiUrl
   constructor(private httpClient: HttpClient) {}
