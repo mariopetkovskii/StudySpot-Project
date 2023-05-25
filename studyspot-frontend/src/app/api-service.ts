@@ -89,11 +89,15 @@ export class ApiService {
   }
 
   getCourses(){
-    return this.httpClient.get(this.endpointUrl + "/course/get-courses");
+    return this.httpClient.get(this.endpointUrl + "/course/get-courses", {
+      headers: this.getAuthHeaders()
+    });
   }
 
   getCourseById(id: number){
-    return this.httpClient.get(this.endpointUrl + "/course/get-course/" + id);
+    return this.httpClient.get(this.endpointUrl + "/course/get-course/" + id, {
+      headers: this.getAuthHeaders()
+    });
   }
 
   addCourse(name: string, desc: string, name_mk: string, desc_mk:string, image:string){
@@ -200,6 +204,16 @@ export class ApiService {
     }
     // @ts-ignore
     return this.httpClient.post(this.endpointUrl + "/course/get-cert", json, httpOptions)
+  }
+
+  deleteLecture(id: number){
+    const httpOptions = {
+      headers: this.getAuthHeaders(),
+      responseType: 'blob'
+    };
+
+    // @ts-ignore
+    return this.httpClient.delete(this.endpointUrl + "/lesson/delete-lesson/" + id, httpOptions)
   }
 
 }

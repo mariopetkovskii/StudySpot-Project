@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ApiService} from "../api-service";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
@@ -52,6 +53,21 @@ export class LectureDialogComponentComponent implements OnInit{
   getURL(){
     const sanitizedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.lecture.url);
     return sanitizedUrl;
+  }
+
+  isAdminAuthority(): boolean{
+    return this.apiService.isUserAdmin();
+  }
+
+  deleteLesson(){
+    this.apiService.deleteLecture(this.data.lecture.id)
+      .subscribe(() => {
+        this.dialogRef.close();
+        this.router.navigate(['/course/' + this.data.courseId])
+      }, () => {
+        this.dialogRef.close();
+        this.router.navigate(['/courses'])
+      })
   }
 
 }

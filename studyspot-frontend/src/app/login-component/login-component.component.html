@@ -12,7 +12,7 @@
 
       <button class="btn mt-5 w-100 p-2" style="background-color: rgba(54,65,81, 0.85); color: white;"
               (click)="handleSubmit()">{{ 'auth.login' | translate }}</button>
-      <p class="h6 m-1">{{ 'auth.register_message' | translate }} {{ 'auth.sign_up' | translate }}</p>
+      <p class="h6 m-1">{{ 'auth.register_message' | translate }} <a href="/register" class="link-info">{{ 'auth.sign_up' | translate }}</a></p>
 
 
       <p class="h6 mt-2">{{ errorMessage }}</p>

@@ -32,15 +32,25 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         this.userService = userService;
     }
 
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         var config = http.cors()
                 .and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers(
-                        LOGIN_URL, "/rest/user/**", "/rest/lesson/**", "/rest/course/get-courses", "/rest/course/get-course/**"
+                        LOGIN_URL, "/rest/user/**"
                 )
                 .permitAll()
+                .antMatchers("/rest/lesson/**", "/rest/course/add", "/rest/course/quiz-question-add", "/rest/course/lesson-add")
+                .hasAuthority("ROLE_ADMIN")
+                .antMatchers("/rest/lesson/getAll", "/rest/lesson/get-lesson/**")
+                .hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .anyRequest().authenticated()
                 .and();
 
@@ -50,12 +60,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-    }
-
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {

@@ -1,9 +1,11 @@
 package com.example.studyspotbackend.service.course.impl;
 
+import com.example.studyspotbackend.models.course.entity.Course;
 import com.example.studyspotbackend.models.course.entity.Lesson;
 import com.example.studyspotbackend.models.course.exceptions.LessonNotFoundException;
 import com.example.studyspotbackend.models.course.helpers.LessonDto;
 import com.example.studyspotbackend.models.course.helpers.LessonEditDto;
+import com.example.studyspotbackend.repository.course.CourseRepository;
 import com.example.studyspotbackend.repository.course.LessonRepository;
 import com.example.studyspotbackend.service.course.interfaces.LessonService;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class LessonServiceImpl implements LessonService {
     private final LessonRepository lessonRepository;
+    private final CourseRepository courseRepository;
 
     @Override
     public List<Lesson> findAll() {
@@ -42,7 +45,11 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public void deleteById(LessonEditDto lessonEditDto) {
-        this.lessonRepository.deleteById(lessonEditDto.getId());
+    public void deleteById(Long id) {
+        Lesson lesson = this.findById(id).orElseThrow(LessonNotFoundException::new);
+        Course course = this.courseRepository.findCourseByLessons(lesson);
+        course.getLessons().remove(lesson);
+        this.courseRepository.save(course);
+        this.lessonRepository.deleteById(id);
     }
 }

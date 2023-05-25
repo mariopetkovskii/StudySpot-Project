@@ -15,5 +15,5 @@ public interface LessonService {
 
     Optional<Lesson> findById(Long id);
 
-    void deleteById(LessonEditDto lessonEditDto);
+    void deleteById(Long id);
 }

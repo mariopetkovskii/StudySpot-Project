@@ -1,6 +1,7 @@
-<div class="container">
+<div class="my-dialog-class">
+  <div class="container">
   <div class="d-flex justify-content-center">
-    <iframe width="700" height="400" [src]="getURL()"
+    <iframe width="100%" height="500" [src]="getURL()"
             title="Video" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
@@ -13,6 +14,15 @@
     >
       Cancel
     </button>
+    <button
+      mat-button
+      class="btn btn-danger"
+      (click)="deleteLesson()"
+      *ngIf="isAdminAuthority()"
+    >
+      Delete
+    </button>
   </div>
 </div>
 
+</div>

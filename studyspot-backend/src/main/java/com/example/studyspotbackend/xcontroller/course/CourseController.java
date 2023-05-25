@@ -11,6 +11,7 @@ import com.example.studyspotbackend.service.certservice.CertificateService;
 import com.example.studyspotbackend.service.course.interfaces.CourseService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +32,6 @@ public class CourseController {
                 .map(course -> ResponseEntity.ok().body(course))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
-
     @GetMapping("/get-courses")
     private List<Course> getCourses(){
         return this.courseService.findAll();

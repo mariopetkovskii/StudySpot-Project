@@ -25,7 +25,7 @@ public class Course {
     private String description;
     private String description_mk;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Lesson> lessons;
 
     @Column(name = "quiz_questions")

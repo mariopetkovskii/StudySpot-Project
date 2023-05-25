@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService} from "../api-service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DialogPosition, MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {LectureDialogComponentComponent} from "../lecture-dialog-component/lecture-dialog-component.component";
 
 
@@ -65,11 +65,12 @@ export class CourseIdComponentComponent implements OnInit{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '50%';
+    dialogConfig.width = '100%';
     dialogConfig.panelClass = 'my-dialog-class';
     const lesson: Lesson | undefined = this.course.lessons.find((lesson: Lesson) => lesson.id === id);
     const payload = {
-      lecture: lesson
+      lecture: lesson,
+      courseId: this.courseId
     }
     dialogConfig.data = payload;
     const dialogRef = this.dialog.open(LectureDialogComponentComponent, dialogConfig);

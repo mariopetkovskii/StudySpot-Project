@@ -1,11 +1,15 @@
 package com.example.studyspotbackend.xcontroller.course;
 
+import com.example.studyspotbackend.models.course.entity.Course;
 import com.example.studyspotbackend.models.course.entity.Lesson;
+import com.example.studyspotbackend.models.course.exceptions.LessonNotFoundException;
 import com.example.studyspotbackend.models.course.helpers.LessonDto;
 import com.example.studyspotbackend.models.course.helpers.LessonEditDto;
+import com.example.studyspotbackend.repository.course.CourseRepository;
 import com.example.studyspotbackend.service.course.interfaces.LessonService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,8 +39,10 @@ public class LessonController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @DeleteMapping("/delete-lesson")
-    public void deleteLesson(@RequestBody LessonEditDto lessonEditDto){
-        this.lessonService.deleteById(lessonEditDto);
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @DeleteMapping("/delete-lesson/{id}")
+    public ResponseEntity deleteLesson(@PathVariable Long id){
+        this.lessonService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
