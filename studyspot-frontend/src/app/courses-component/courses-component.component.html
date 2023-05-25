@@ -9,8 +9,8 @@
           <div class="card-body">
             <h5 class="card-title" *ngIf="selectedLanguage === 'en'">{{ course.name }}</h5>
             <h5 class="card-title" *ngIf="selectedLanguage === 'mk'">{{ course.name_mk }}</h5>
-            <p class="card-text" *ngIf="selectedLanguage === 'en'">{{ course.description }}</p>
-            <p class="card-text" *ngIf="selectedLanguage === 'mk'">{{ course.description_mk }}</p>
+            <p class="card-text" *ngIf="selectedLanguage === 'en'">{{ course.description | slice:0:50 }}...</p>
+            <p class="card-text" *ngIf="selectedLanguage === 'mk'">{{ course.description_mk | slice: 0:50 }}...</p>
             <button class="btn btn-secondary w-100" (click)="openCourse(course.id)" *ngIf="isUserLoggedIn()">{{ 'courses.more_information' | translate }}</button>
           </div>
         </div>

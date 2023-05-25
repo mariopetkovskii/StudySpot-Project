@@ -13,9 +13,9 @@ public class Lesson {
 
     private String name;
     private String name_mk;
-    @Column(length = 2000)
+    @Lob
     private String description;
-    @Column(length = 2000)
+    @Lob
     private String description_mk;
 
     private String url;
