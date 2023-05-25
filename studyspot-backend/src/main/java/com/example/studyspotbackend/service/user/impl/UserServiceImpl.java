@@ -10,6 +10,8 @@ import com.example.studyspotbackend.service.user.interfaces.TokenService;
 import com.example.studyspotbackend.service.user.interfaces.UserService;
 import com.example.studyspotbackend.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JavaMailSender javaMailSender;
 
     private final TokenService tokenService;
 
@@ -76,7 +79,8 @@ public class UserServiceImpl implements UserService {
         tokenService.create(token);
 
         this.userRepository.save(newUser);
-        HelperFunction.sendRegistrationEmail(userRegisterDto.getEmail(), tokenValue);
+//        HelperFunction.sendRegistrationEmail(userRegisterDto.getEmail(), tokenValue);
+        sendMailConfirmation(userRegisterDto.getEmail(), tokenValue);
         return Optional.of(newUser);
     }
 
@@ -90,4 +94,22 @@ public class UserServiceImpl implements UserService {
         user.setIsEnabled(true);
         return this.userRepository.save(user);
     }
+
+
+    private void sendMailConfirmation(String email, String token){
+        try {
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+            mailMessage.setTo(email);
+            mailMessage.setSubject("Confirmation email!");
+            mailMessage.setFrom("studyspot25@outlook.com");
+            mailMessage.setText("Click here to confirm your account : "
+                    +"http://localhost:8080/rest/user/confirm-account?token="+token);
+
+            javaMailSender.send(mailMessage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

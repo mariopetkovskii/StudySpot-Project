@@ -59,6 +59,7 @@ export class QuizComponentComponent implements OnInit{
     }
     this.apiService.submitAnswers(this.courseId, jsonArray)
       .subscribe((data)=> {
+        this.router.navigate(['/profile'])
         console.log(data)
       })
   }
