@@ -104,7 +104,7 @@ public class UserServiceImpl implements UserService {
             mailMessage.setSubject("Confirmation email!");
             mailMessage.setFrom("studyspot25@outlook.com");
             mailMessage.setText("Click here to confirm your account : "
-                    +"http://localhost:8080/rest/user/confirm-account?token="+token);
+                    +"http://51.140.255.129:8080/rest/user/confirm-account?token="+token);
 
             javaMailSender.send(mailMessage);
         } catch (Exception e) {
