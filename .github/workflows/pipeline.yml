@@ -2,43 +2,43 @@ name: Login to Docker, build, tag, push and Azure Deploy
 on: [push]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
+#     build:
+#         runs-on: ubuntu-latest
+#         steps:
+#         - uses: actions/checkout@v2
     
-        - name: Login to DockerHub
-          uses: docker/login-action@v1
-          with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
+#         - name: Login to DockerHub
+#           uses: docker/login-action@v1
+#           with:
+#             username: ${{ secrets.DOCKERHUB_USERNAME }}
+#             password: ${{ secrets.DOCKERHUB_TOKEN }}
             
-        - name: Build backend image
-          run: |
-            docker build -t mariopetkovski/studyspot ./studyspot-backend
+#         - name: Build backend image
+#           run: |
+#             docker build -t mariopetkovski/studyspot ./studyspot-backend
             
-        - name: Docker backend tag
-          run: |
-            docker tag mariopetkovski/studyspot mariopetkovski/studyspot
+#         - name: Docker backend tag
+#           run: |
+#             docker tag mariopetkovski/studyspot mariopetkovski/studyspot
         
-        - name: Docker push backend image
-          run: |
-            docker push mariopetkovski/studyspot
+#         - name: Docker push backend image
+#           run: |
+#             docker push mariopetkovski/studyspot
             
-        - name: Build frontend image
-          run: |
-            docker build -t mariopetkovski/studyspotfront ./studyspot-frontend
+#         - name: Build frontend image
+#           run: |
+#             docker build -t mariopetkovski/studyspotfront ./studyspot-frontend
             
-        - name: Docker frontend tag
-          run: |
-            docker tag mariopetkovski/studyspotfront mariopetkovski/studyspotfront
+#         - name: Docker frontend tag
+#           run: |
+#             docker tag mariopetkovski/studyspotfront mariopetkovski/studyspotfront
         
-        - name: Docker push frontend image
-          run: |
-            docker push mariopetkovski/studyspotfront
+#         - name: Docker push frontend image
+#           run: |
+#             docker push mariopetkovski/studyspotfront
              
     deploy:
-        needs: build
+#         needs: build
         runs-on:
             - self-hosted
             - label-1
@@ -47,8 +47,10 @@ jobs:
             
             - name: Run scripts
               run: |
-                 git pull
-                 cd scripts
-                 helm upgrade --install backend-chart studyspot-backend
-                 helm upgrade --install frontend-chart studyspot-frontend
+                pwd
+                ls
+              #   git pull
+              #   cd scripts
+               #  helm upgrade --install backend-chart studyspot-backend
+                # helm upgrade --install frontend-chart studyspot-frontend
             
