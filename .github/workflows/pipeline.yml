@@ -49,8 +49,8 @@ jobs:
               run: |
                 pwd
                 ls
-              #   git pull
-              #   cd scripts
-               #  helm upgrade --install backend-chart studyspot-backend
-                # helm upgrade --install frontend-chart studyspot-frontend
+                git pull
+                cd charts
+                helm upgrade --install backend-chart studyspot-backend
+                helm upgrade --install frontend-chart studyspot-frontend
             
