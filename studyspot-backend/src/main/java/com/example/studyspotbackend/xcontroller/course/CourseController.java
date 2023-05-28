@@ -2,6 +2,7 @@ package com.example.studyspotbackend.xcontroller.course;
 
 import com.example.studyspotbackend.models.course.entity.Course;
 import com.example.studyspotbackend.models.course.helpers.CourseDto;
+import com.example.studyspotbackend.models.course.helpers.CourseEditDto;
 import com.example.studyspotbackend.models.course.helpers.LessonAndCourseDto;
 import com.example.studyspotbackend.models.quiz.entity.QuizQuestions;
 import com.example.studyspotbackend.models.quiz.entity.QuizResults;
@@ -40,6 +41,13 @@ public class CourseController {
     @GetMapping("/get-course/{id}")
     private Optional<Course> getCourse(@PathVariable Long id){
         return this.courseService.findById(id);
+    }
+
+    @PutMapping("/edit-course")
+    private ResponseEntity<Course> editCourse(@RequestBody CourseEditDto courseEditDto){
+        return this.courseService.edit(courseEditDto)
+                .map(course -> ResponseEntity.ok().body(course))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @DeleteMapping("/delete")

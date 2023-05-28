@@ -10,6 +10,7 @@ import java.util.List;
 public class CourseEditDto {
     Long id;
     String name;
+    String imageUrl;
     List<Lesson> lessons;
     List<Quiz> quizzes;
 }

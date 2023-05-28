@@ -51,7 +51,8 @@ public class CourseServiceImpl implements CourseService {
     public Optional<Course> edit(CourseEditDto courseEditDto) {
         Course course = this.courseRepository.findById(courseEditDto.getId()).
                 orElseThrow(CourseNotFoundException::new);
-        course.setName((courseEditDto.getName()));
+        course.setName(courseEditDto.getName());
+        course.setImageUrl(course.getImageUrl());
         return Optional.of(this.courseRepository.save(course));
     }
 

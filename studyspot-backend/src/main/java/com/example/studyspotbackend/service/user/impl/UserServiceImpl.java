@@ -102,7 +102,8 @@ public class UserServiceImpl implements UserService {
 
             mailMessage.setTo(email);
             mailMessage.setSubject("Confirmation email!");
-            mailMessage.setFrom("studyspot25@outlook.com");
+//            mailMessage.setFrom("studyspot25@outlook.com");
+            mailMessage.setFrom("studyspotproject@outlook.com");
             mailMessage.setText("Click here to confirm your account : "
                     +"http://51.140.255.129:8080/rest/user/confirm-account?token="+token);
 
