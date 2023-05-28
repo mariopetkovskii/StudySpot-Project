@@ -37,23 +37,18 @@ jobs:
           run: |
             docker push mariopetkovski/studyspotfront
              
-#     deploy:
-#         needs: build
-#         runs-on:
-#             - self-hosted
-#             - label-1
-#         steps:
-#             - uses: actions/checkout@v2
+    deploy:
+        needs: build
+        runs-on:
+            - self-hosted
+            - label-1
+        steps:
+            - uses: actions/checkout@v2
             
-#             - name: Run scripts
-#               run: |
-#                  git pull
-#                  cd scripts
-#                  helm upgrade --install mailhog-chart mailhog
-#                  helm upgrade --install pg-admin pgadmin
-#                  helm upgrade --install postgres-chart-chart postgres-chart
-#                  helm upgrade --install backend-chart studyspot-backend
-#                  helm upgrade --install frontend-chart studyspot-frontend
-#                  kubectl rollout restart deployment studyspotdeployment
-#                  kubectl rollout restart deployment studyspotfrontenddeployment
+            - name: Run scripts
+              run: |
+                 git pull
+                 cd scripts
+                 helm upgrade --install backend-chart studyspot-backend
+                 helm upgrade --install frontend-chart studyspot-frontend
             
